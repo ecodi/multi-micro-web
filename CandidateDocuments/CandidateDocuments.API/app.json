@@ -1,0 +1,52 @@
+﻿{
+  "Data": {
+    "CandidateDocumentsConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=micromultiweb;Trusted_Connection=True;MultipleActiveResultSets=true",
+      //"ConnectionString": "User ID=postgres;Password=admin1!;Host=localhost;Port=5432;Database=micromultiweb;Pooling=true",
+      "ProviderType": 1, // 1 - MSSQL, 2 - PostgreSQL, else - Memory
+      "RunMigrationsAtStartup": true
+    }
+  },
+  "MqLogging": {
+    // "ExchangeName": "logging",
+    "RoutingKey": "logging.CandidateDocuments"
+  },
+  "Services": {
+    "ModulesService": {
+      "Endpoint": "http://localhost:8081",
+      "TimeoutMilliseconds": 5000,
+      "StabilityPolicy": "ModulesService"
+    }
+  },
+  "StabilityPolicies": {
+    "ModulesService": {
+      "BreakOnNumberOfExceptions": 5,
+      "BreakCircuitForSeconds": 10,
+      "NumberOfRetriesPerRequest": 3
+    }
+  },
+  "RawRabbit": {
+    "Username": "guest",
+    "Password": "guest",
+    "VirtualHost": "/",
+    "Port": 5672,
+    "Hostnames": [ "localhost" ],
+    "RequestTimeout": "00:00:10",
+    "PublishConfirmTimeout": "00:00:01",
+    "RecoveryInterval": "00:00:10",
+    "PersistentDeliveryMode": false,
+    "AutoCloseConnection": false,
+    "AutomaticRecovery": true,
+    "TopologyRecovery": true,
+    "Exchange": {
+      "Durable": true,
+      "AutoDelete": false,
+      "Type": "Topic"
+    },
+    "Queue": {
+      "AutoDelete": false,
+      "Durable": true,
+      "Exclusive": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+﻿{
+  "Data": {
+    "CandidateDocumentsConnection": {
+      "ProviderType": 0
+    }
+  },
+  "Services": {
+    "ModulesService": {
+      "Endpoint": "http://localhost:8081/",
+      "TimeoutMilliseconds": 10000,
+      "StabilityPolicy": ""
+    }
+  }
+}
